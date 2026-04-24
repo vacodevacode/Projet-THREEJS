@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forêt au Coucher du Soleil - Three.js</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; font-family: 'Segoe UI', sans-serif; }
+        canvas { display: block; }
+
+        #info {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.55;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.08);
+            max-width: 280px;
+        }
+        #info b { color: #ffb86b; }
+
+        #stats-panel {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            color: #fff;
+            background: rgba(0,0,0,0.45);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-family: monospace;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        #stats-panel span { color: #8be9fd; }
+
+        #loading {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-align: center;
+            z-index: 100;
+        }
+        #loading .sub {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+        .fadeout { animation: fade 1s forwards; }
+        @keyframes fade { to { opacity: 0; visibility: hidden; } }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <b>Forêt au Coucher du Soleil</b><br />
+        Clic gauche + glisser : orbiter<br />
+        Clic droit + glisser : déplacer<br />
+        Molette : zoom
+    </div>
+
+    <div id="stats-panel">
+        FPS : <span id="fps">--</span><br />
+        Draw calls : <span id="drawcalls">--</span><br />
+        Triangles : <span id="triangles">--</span>
+    </div>
+
+    <div id="loading">
+        CHARGEMENT DE LA SCÈNE...
+        <div class="sub">Génération procédurale en cours</div>
+    </div>
+
+    <!-- Import map pour Three.js en CDN pur, sans npm -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>
